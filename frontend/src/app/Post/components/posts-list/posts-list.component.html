@@ -1,29 +1,62 @@
-<h2>Post List</h2>
-<button (click)="createPost()">ADD</button>
+<mat-card class="main-container-card">
+  <mat-card-header>
+    <h1>Post List</h1>
+  </mat-card-header>
+  <mat-card-content>
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="createPost()"
+      class="add-button"
+    >
+      ADD
+    </button>
+    <table mat-table [dataSource]="posts" class="mat-elevation-z8">
+      <!-- Id Column -->
+      <ng-container matColumnDef="post-id">
+        <th mat-header-cell *matHeaderCellDef>Id.</th>
+        <td mat-cell *matCellDef="let post">{{ post.categoryId }}</td>
+      </ng-container>
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>TITLE</th>
-      <th>DESCRIPTION</th>
-      <th>NUM LIKES</th>
-      <th>NUM DISLIKES</th>
-      <th>ACTIONS</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let post of posts">
-      <td>{{ post.postId }}</td>
-      <td>{{ post.title }}</td>
-      <td>{{ post.description }}</td>
-      <td>{{ post.num_likes }}</td>
-      <td>{{ post.num_dislikes }}</td>
+      <!-- Title Column -->
+      <ng-container matColumnDef="post-title">
+        <th mat-header-cell *matHeaderCellDef>Title</th>
+        <td mat-cell *matCellDef="let post">{{ post.title }}</td>
+      </ng-container>
 
-      <td>
-        <button (click)="updatePost(post.postId)">UPDATE</button>
-        <button (click)="deletePost(post.postId)">DELETE</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+      <!-- Description Column -->
+      <ng-container matColumnDef="post-description">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let post">{{ post.description }}</td>
+      </ng-container>
+
+      <!-- Num Likes Column -->
+      <ng-container matColumnDef="post-num-likes">
+        <th mat-header-cell *matHeaderCellDef>Num Likes</th>
+        <td mat-cell *matCellDef="let post">{{ post.num_likes }}</td>
+      </ng-container>
+
+      <!-- Num Dislikes Column -->
+      <ng-container matColumnDef="post-num-dislikes">
+        <th mat-header-cell *matHeaderCellDef>Num Dislikes</th>
+        <td mat-cell *matCellDef="let post">{{ post.num_dislikes }}</td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="post-actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let post">
+          <button mat-icon-button (click)="updatePost(post.postId)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="deletePost(post.postId)">
+            <mat-icon color="warn">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>

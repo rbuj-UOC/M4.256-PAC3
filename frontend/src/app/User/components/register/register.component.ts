@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -7,7 +7,6 @@ import {
   Validators
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.reducers';
 import * as UserAction from '../../actions';
 import { UserDTO } from '../../models/user.dto';
 
@@ -16,7 +15,7 @@ import { UserDTO } from '../../models/user.dto';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   registerUser: UserDTO;
 
   name: FormControl;
@@ -32,7 +31,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private store: Store<AppState>
+    private store: Store
   ) {
     this.registerUser = new UserDTO('', '', '', '', new Date(), '', '');
 
@@ -86,8 +85,6 @@ export class RegisterComponent implements OnInit {
       password: this.password
     });
   }
-
-  ngOnInit(): void {}
 
   register(): void {
     this.isValidForm = false;

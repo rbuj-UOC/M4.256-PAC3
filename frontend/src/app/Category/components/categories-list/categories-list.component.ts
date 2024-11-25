@@ -12,6 +12,13 @@ import { CategoryDTO } from '../../models/category.dto';
 })
 export class CategoriesListComponent {
   categories: CategoryDTO[];
+  displayedColumns: string[] = [
+    'category-id',
+    'category-title',
+    'category-description',
+    'category-css-color',
+    'category-actions'
+  ];
 
   private userId: string;
   constructor(
