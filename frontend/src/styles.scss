@@ -36,6 +36,7 @@ body {
   width: auto;
   margin: 0 16px;
   overflow: auto;
+  height: 100%;
 
   @include mq.mq($from: tablet) {
     margin: 0 32px;

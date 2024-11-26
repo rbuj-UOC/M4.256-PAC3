@@ -1,19 +1,27 @@
-<p>header works!</p>
-
 <!-- NO AUTH REQUIRED -->
-<div *ngIf="showNoAuthSection">
-  <button (click)="dashboard()">Dashboard</button>
-  <button (click)="home()">Home</button>
-  <button (click)="login()">Login</button>
-  <button (click)="register()">Register</button>
-</div>
+<mat-toolbar *ngIf="showNoAuthSection" color="primary">
+  <button mat-flat-button color="primary" (click)="dashboard()">
+    Dashboard
+  </button>
+  <button mat-flat-button color="primary" (click)="home()">Home</button>
+  <span class="example-spacer"></span>
+  <button mat-flat-button color="primary" (click)="login()">Login</button>
+  <button mat-flat-button color="primary" (click)="register()">Register</button>
+</mat-toolbar>
 
 <!-- AUTH REQUIRED -->
-<div *ngIf="showAuthSection">
-  <button (click)="dashboard()">Dashboard</button>
-  <button (click)="home()">Home</button>
-  <button (click)="adminPosts()">Admin posts</button>
-  <button (click)="adminCategories()">Admin categories</button>
-  <button (click)="profile()">Profile</button>
-  <button (click)="logout()">Logout</button>
-</div>
+<mat-toolbar *ngIf="showAuthSection" color="primary">
+  <button mat-flat-button color="primary" (click)="dashboard()">
+    Dashboard
+  </button>
+  <button mat-flat-button color="primary" (click)="home()">Home</button>
+  <button mat-flat-button color="primary" (click)="adminPosts()">
+    Admin Posts
+  </button>
+  <button mat-flat-button color="primary" (click)="adminCategories()">
+    Admin Categories
+  </button>
+  <span class="example-spacer"></span>
+  <button mat-flat-button color="primary" (click)="profile()">Profile</button>
+  <button mat-flat-button color="primary" (click)="logout()">Logout</button>
+</mat-toolbar>
