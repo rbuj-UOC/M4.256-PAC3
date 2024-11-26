@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.reducers';
+import { selectUserId } from 'src/app/Auth/selectors';
 import * as CategoriesAction from '../../actions';
 import { CategoryDTO } from '../../models/category.dto';
+import { selectCategories } from '../../selectors';
 
 @Component({
   selector: 'app-categories-list',
@@ -23,19 +24,19 @@ export class CategoriesListComponent {
   private userId: string;
   constructor(
     private router: Router,
-    private store: Store<AppState>
+    private store: Store
   ) {
     this.userId = '';
     this.categories = new Array<CategoryDTO>();
 
-    this.store.select('auth').subscribe((auth) => {
-      if (auth.credentials.user_id) {
-        this.userId = auth.credentials.user_id;
+    this.store.select(selectUserId).subscribe((user_id) => {
+      if (user_id) {
+        this.userId = user_id;
       }
     });
 
-    this.store.select('categories').subscribe((categories) => {
-      this.categories = categories.categories;
+    this.store.select(selectCategories).subscribe((categories) => {
+      this.categories = categories;
     });
 
     this.loadCategories();
@@ -58,8 +59,6 @@ export class CategoriesListComponent {
   }
 
   deleteCategory(categoryId: string): void {
-    let errorResponse: any;
-
     // show confirmation popup
     const result = confirm(
       'Confirm delete category with id: ' + categoryId + ' .'

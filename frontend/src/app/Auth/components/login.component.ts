@@ -6,7 +6,6 @@ import {
   Validators
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.reducers';
 import * as AuthAction from '../actions';
 import { AuthDTO } from '../models/auth.dto';
 
@@ -22,7 +21,7 @@ export class LoginComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private store: Store<AppState>
+    private store: Store
   ) {
     this.email = new FormControl('', [
       Validators.required,

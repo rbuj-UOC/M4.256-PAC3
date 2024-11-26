@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.reducers';
+import { selectUserId } from 'src/app/Auth/selectors';
 import * as PostsAction from '../../actions';
 import { PostDTO } from '../../models/post.dto';
+import { selectPosts } from '../../selectors';
 
 @Component({
   selector: 'app-posts-list',
@@ -24,19 +25,19 @@ export class PostsListComponent {
 
   constructor(
     private router: Router,
-    private store: Store<AppState>
+    private store: Store
   ) {
     this.userId = '';
     this.posts = new Array<PostDTO>();
 
-    this.store.select('auth').subscribe((auth) => {
-      if (auth.credentials.user_id) {
-        this.userId = auth.credentials.user_id;
+    this.store.select(selectUserId).subscribe((user_id) => {
+      if (user_id) {
+        this.userId = user_id;
       }
     });
 
-    this.store.select('posts').subscribe((posts) => {
-      this.posts = posts.posts;
+    this.store.select(selectPosts).subscribe((posts) => {
+      this.posts = posts;
     });
 
     this.loadPosts();

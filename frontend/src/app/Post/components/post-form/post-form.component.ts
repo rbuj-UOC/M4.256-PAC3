@@ -8,11 +8,13 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.reducers';
+import { selectUserId } from 'src/app/Auth/selectors';
 import { CategoryDTO } from 'src/app/Category/models/category.dto';
+import { selectCategories } from 'src/app/Category/selectors';
 import * as CategoriesAction from '../../../Category/actions';
 import * as PostsAction from '../../actions';
 import { PostDTO } from '../../models/post.dto';
+import { selectPost } from '../../selectors';
 
 @Component({
   selector: 'app-post-form',
@@ -41,7 +43,7 @@ export class PostFormComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private store: Store<AppState>
+    private store: Store
   ) {
     this.userId = '';
 
@@ -79,18 +81,18 @@ export class PostFormComponent implements OnInit {
       num_dislikes: this.num_dislikes
     });
 
-    this.store.select('auth').subscribe((auth) => {
-      if (auth.credentials.user_id) {
-        this.userId = auth.credentials.user_id;
+    this.store.select(selectUserId).subscribe((user_id) => {
+      if (user_id) {
+        this.userId = user_id;
       }
     });
 
-    this.store.select('categories').subscribe((categories) => {
-      this.categoriesList = categories.categories;
+    this.store.select(selectCategories).subscribe((categories) => {
+      this.categoriesList = categories;
     });
 
-    this.store.select('posts').subscribe((posts) => {
-      this.post = posts.post;
+    this.store.select(selectPost).subscribe((post) => {
+      this.post = post;
 
       this.title.setValue(this.post.title);
 

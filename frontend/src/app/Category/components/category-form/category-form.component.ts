@@ -7,9 +7,10 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.reducers';
+import { selectUserId } from 'src/app/Auth/selectors';
 import * as CategoriesAction from '../../actions';
 import { CategoryDTO } from '../../models/category.dto';
+import { selectCategory } from '../../selectors';
 
 @Component({
   selector: 'app-category-form',
@@ -33,7 +34,7 @@ export class CategoryFormComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private store: Store<AppState>
+    private store: Store
   ) {
     this.userId = '';
 
@@ -63,14 +64,14 @@ export class CategoryFormComponent implements OnInit {
       css_color: this.css_color
     });
 
-    this.store.select('auth').subscribe((auth) => {
-      if (auth.credentials.user_id) {
-        this.userId = auth.credentials.user_id;
+    this.store.select(selectUserId).subscribe((user_id) => {
+      if (user_id) {
+        this.userId = user_id;
       }
     });
 
-    this.store.select('categories').subscribe((categories) => {
-      this.category = categories.category;
+    this.store.select(selectCategory).subscribe((category) => {
+      this.category = category;
 
       this.title.setValue(this.category.title);
 

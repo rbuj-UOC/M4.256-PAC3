@@ -7,9 +7,10 @@ import {
   Validators
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.reducers';
+import { selectUserId } from 'src/app/Auth/selectors';
 import * as UserAction from '../../actions';
 import { UserDTO } from '../../models/user.dto';
+import { selectUser } from '../../selectors';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -33,7 +34,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private store: Store<AppState>
+    private store: Store
   ) {
     this.userId = '';
     this.profileUser = new UserDTO('', '', '', '', new Date(), '', '');
@@ -88,14 +89,14 @@ export class ProfileComponent implements OnInit {
       password: this.password
     });
 
-    this.store.select('auth').subscribe((auth) => {
-      if (auth.credentials.user_id) {
-        this.userId = auth.credentials.user_id;
+    this.store.select(selectUserId).subscribe((user_id) => {
+      if (user_id) {
+        this.userId = user_id;
       }
     });
 
-    this.store.select('user').subscribe((user) => {
-      this.profileUser = user.user;
+    this.store.select(selectUser).subscribe((user) => {
+      this.profileUser = user;
 
       this.name.setValue(this.profileUser.name);
       this.surname_1.setValue(this.profileUser.surname_1);

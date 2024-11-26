@@ -7,7 +7,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AppState } from '../../app.reducers';
+import { selectAccessToken } from 'src/app/Auth/selectors';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +15,11 @@ import { AppState } from '../../app.reducers';
 export class AuthInterceptorService implements HttpInterceptor {
   private access_token = '';
 
-  constructor(private store: Store<AppState>) {
-    this.store.select('auth').subscribe((auth) => {
+  constructor(private store: Store) {
+    this.store.select(selectAccessToken).subscribe((access_token) => {
       this.access_token = '';
-      if (auth.credentials.access_token) {
-        this.access_token = auth.credentials.access_token;
+      if (access_token) {
+        this.access_token = access_token;
       }
     });
   }

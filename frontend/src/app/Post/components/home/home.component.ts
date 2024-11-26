@@ -1,10 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.reducers';
+import { selectCredentials } from 'src/app/Auth/selectors';
 import { SharedService } from 'src/app/Shared/Services/shared.service';
 import * as PostsAction from '../../actions';
 import { PostDTO } from '../../models/post.dto';
+import { selectPosts } from '../../selectors';
 import { PostService } from '../../services/post.service';
 
 @Component({
@@ -21,25 +22,25 @@ export class HomeComponent {
   constructor(
     private postService: PostService,
     private sharedService: SharedService,
-    private store: Store<AppState>
+    private store: Store
   ) {
     this.userId = '';
     this.posts = new Array<PostDTO>();
     this.showButtons = false;
 
-    this.store.select('auth').subscribe((auth) => {
+    this.store.select(selectCredentials).subscribe((credentials) => {
       this.showButtons = false;
 
-      if (auth.credentials.user_id) {
-        this.userId = auth.credentials.user_id;
+      if (credentials.user_id) {
+        this.userId = credentials.user_id;
       }
-      if (auth.credentials.access_token) {
+      if (credentials.access_token) {
         this.showButtons = true;
       }
     });
 
-    this.store.select('posts').subscribe((posts) => {
-      this.posts = posts.posts;
+    this.store.select(selectPosts).subscribe((posts) => {
+      this.posts = posts;
     });
   }
 

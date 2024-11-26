@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.reducers';
 import * as PostsAction from '../../actions';
 import { PostDTO } from '../../models/post.dto';
+import { selectPosts } from '../../selectors';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,13 +14,13 @@ export class DashboardComponent implements OnInit {
   numLikes: number;
   numDislikes: number;
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store) {
     this.posts = new Array<PostDTO>();
     this.numLikes = 0;
     this.numDislikes = 0;
 
-    this.store.select('posts').subscribe((posts) => {
-      this.posts = posts.posts;
+    this.store.select(selectPosts).subscribe((posts) => {
+      this.posts = posts;
       this.numLikes = 0;
       this.numDislikes = 0;
       this.posts.forEach((post) => {
