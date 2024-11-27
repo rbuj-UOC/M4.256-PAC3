@@ -19,13 +19,12 @@ import { appReducers, EffectsArray } from './app.reducers';
 import { AuthModule } from './Auth/auth.module';
 import { CategoryModule } from './Category/category.module';
 import { PostModule } from './Post/post.module';
-import { HeaderComponent } from './Shared/Components/header/header.component';
 import { SpinnerComponent } from './Shared/Components/spinner/spinner.component';
 import { AuthInterceptorService } from './Shared/Services/auth-interceptor.service';
 import { UserModule } from './User/user.module';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, SpinnerComponent],
+  declarations: [AppComponent, SpinnerComponent],
 
   imports: [
     BrowserModule,
@@ -36,13 +35,12 @@ import { UserModule } from './User/user.module';
     UserModule,
     CategoryModule,
     PostModule,
-    MatIconModule,
-    MatProgressSpinnerModule,
-    MatIconModule,
     MatButtonModule,
-    MatToolbarModule,
-    MatSidenavModule,
+    MatIconModule,
     MatListModule,
+    MatProgressSpinnerModule,
+    MatSidenavModule,
+    MatToolbarModule,
     StoreModule.forRoot(appReducers, {
       runtimeChecks: {
         strictStateImmutability: false,

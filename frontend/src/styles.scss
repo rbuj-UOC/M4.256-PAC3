@@ -34,13 +34,14 @@ body {
 
 .main-container-card {
   width: auto;
-  margin: 0 16px;
+  margin: 0;
   overflow: auto;
-  height: 100%;
+  padding-bottom: 60px;
 
   @include mq.mq($from: tablet) {
     margin: 0 32px;
     width: auto;
+    padding-bottom: 0;
   }
 
   @include mq.mq($from: desktop) {

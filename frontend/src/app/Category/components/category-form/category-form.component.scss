@@ -17,16 +17,11 @@
 //   $show-breakpoints: $show-breakpoints
 // );
 
-.error {
-  color: red;
-}
-
 #categoryFeedback {
   visibility: hidden;
   min-width: 250px;
   color: #fff;
   text-align: center;
-  border-radius: 10px;
   padding: 16px;
   z-index: 1;
   font-size: 14px;
@@ -44,23 +39,9 @@
 
 #categoryFeedback.show {
   visibility: visible;
-  -webkit-animation:
-    fadein 0.5s,
-    fadeout 0.5s 2.5s;
   animation:
     fadein 0.5s,
     fadeout 0.5s 2.5s;
-}
-
-@-webkit-keyframes fadein {
-  from {
-    bottom: 0;
-    opacity: 0;
-  }
-  to {
-    bottom: 30px;
-    opacity: 1;
-  }
 }
 
 @keyframes fadein {
@@ -74,7 +55,7 @@
   }
 }
 
-@-webkit-keyframes fadeout {
+@keyframes fadeout {
   from {
     bottom: 30px;
     opacity: 1;
@@ -85,15 +66,8 @@
   }
 }
 
-@keyframes fadeout {
-  from {
-    bottom: 30px;
-    opacity: 1;
-  }
-  to {
-    bottom: 0;
-    opacity: 0;
-  }
+.error {
+  color: red;
 }
 
 .category-line {

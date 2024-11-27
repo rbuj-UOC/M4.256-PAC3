@@ -1,6 +1,71 @@
-<app-spinner *ngIf="showLoadingAuth | async"></app-spinner>
-<app-spinner *ngIf="showLoadingCategories | async"></app-spinner>
-<app-spinner *ngIf="showLoadingPosts | async"></app-spinner>
-<app-spinner *ngIf="showLoadingUser | async"></app-spinner>
-<app-header></app-header>
-<router-outlet></router-outlet>
+<app-spinner *ngIf="showLoadingAuth"></app-spinner>
+<app-spinner *ngIf="showLoadingCategories"></app-spinner>
+<app-spinner *ngIf="showLoadingPosts"></app-spinner>
+<app-spinner *ngIf="showLoadingUser"></app-spinner>
+
+<!-- NO AUTH REQUIRED -->
+<mat-toolbar *ngIf="showNoAuthSection" color="primary">
+  <button mat-icon-button aria-label="Menu icon" (click)="toggleMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="toolbar-spacer"></span>
+  <button mat-flat-button color="primary" (click)="login()">Login</button>
+  <button mat-flat-button color="primary" (click)="register()">Register</button>
+</mat-toolbar>
+<!-- AUTH REQUIRED -->
+<mat-toolbar *ngIf="showAuthSection" color="primary">
+  <button mat-icon-button aria-label="Menu icon" (click)="toggleMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="toolbar-spacer"></span>
+  <button mat-flat-button color="primary" (click)="profile()">Profile</button>
+  <button mat-flat-button color="primary" (click)="logout()">Logout</button>
+</mat-toolbar>
+
+<mat-sidenav-container autosize="true">
+  <mat-sidenav
+    [ngClass]="!isCollapsed ? 'expanded' : ''"
+    [mode]="isMobile ? 'over' : 'side'"
+    [opened]="isMobile ? 'false' : 'true'"
+  >
+    <mat-nav-list>
+      <a mat-list-item routerLinkActive (click)="dashboard()">
+        <span class="entry">
+          <mat-icon>dashboard</mat-icon>
+          <span *ngIf="!isCollapsed">Dashboard</span>
+        </span>
+      </a>
+      <a mat-list-item routerLinkActive (click)="home()">
+        <span class="entry">
+          <mat-icon>home</mat-icon>
+          <span *ngIf="!isCollapsed">Home</span>
+        </span>
+      </a>
+      <a
+        mat-list-item
+        routerLinkActive
+        (click)="adminPosts()"
+        *ngIf="showAuthSection"
+      >
+        <span class="entry">
+          <mat-icon>book</mat-icon>
+          <span *ngIf="!isCollapsed">Admin Posts</span>
+        </span>
+      </a>
+      <a
+        mat-list-item
+        routerLinkActive
+        (click)="adminCategories()"
+        *ngIf="showAuthSection"
+      >
+        <span class="entry">
+          <mat-icon>label</mat-icon>
+          <span *ngIf="!isCollapsed">Admin Categories</span>
+        </span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
