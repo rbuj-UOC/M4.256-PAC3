@@ -1,25 +1,43 @@
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10px;
-  border-radius: 10px;
+@use '../../../../../node_modules/sass-mq/mq';
+
+.posts-container {
+  padding: 8px;
+  display: grid;
+  grid-gap: 10px;
+  margin-bottom: 60px;
+  justify-content: space-around;
+  @include mq.mq($from: tablet) {
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, 300px);
+  }
+  @include mq.mq($from: desktop) {
+    justify-content: start;
+  }
 }
 
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+.post-card {
+  width: 90vw;
+  @include mq.mq($from: tablet) {
+    width: 300px;
+  }
 }
 
-.container {
-  padding: 2px 16px;
+.post-header-image {
+  background-image: url('/assets/shiba1.jpg');
+  background-size: cover;
 }
 
-.badge {
-  color: black;
-  margin-right: 5px;
-  margin-left: 5px;
-  border-radius: 10px;
-  padding: 5px 10px;
+.social-network {
+  display: grid;
+  justify-content: space-evenly;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 10px;
+
+  .entry {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+  }
 }

@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
     this.showLoadingUser = false;
   }
   ngOnInit(): void {
-    this.observer.observe(['(max-width: 800px)']).subscribe((screenSize) => {
+    this.observer.observe(['(max-width: 740px)']).subscribe((screenSize) => {
       if (screenSize.matches) {
         this.isMobile = true;
       } else {
