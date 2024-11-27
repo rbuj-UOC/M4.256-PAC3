@@ -1,4 +1,15 @@
 <div *ngIf="posts">
-  <p>Num likes: {{ numLikes }}</p>
-  <p>Num dislikes: {{ numDislikes }}</p>
+  <div>
+    <ngx-charts-pie-chart
+      [results]="pieChartData"
+      [legend]="false"
+      [legendTitle]="'Product Sale Report'"
+      [labels]="true"
+    >
+    </ngx-charts-pie-chart>
+  </div>
+  <div class="legend">
+    <p>Num likes: {{ numLikes }}</p>
+    <p>Num dislikes: {{ numDislikes }}</p>
+  </div>
 </div>
