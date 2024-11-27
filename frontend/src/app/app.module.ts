@@ -22,9 +22,10 @@ import { PostModule } from './Post/post.module';
 import { SpinnerComponent } from './Shared/Components/spinner/spinner.component';
 import { AuthInterceptorService } from './Shared/Services/auth-interceptor.service';
 import { UserModule } from './User/user.module';
+import { PostCardComponent } from './Shared/Components/post-card/post-card.component';
 
 @NgModule({
-  declarations: [AppComponent, SpinnerComponent],
+  declarations: [AppComponent, SpinnerComponent, PostCardComponent],
 
   imports: [
     BrowserModule,

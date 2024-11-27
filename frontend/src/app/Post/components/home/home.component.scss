@@ -27,17 +27,34 @@
   background-size: cover;
 }
 
-.social-network {
-  display: grid;
-  justify-content: space-evenly;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  padding: 10px;
+.card-actions {
+  display: flex;
+  align-items: center;
+}
 
-  .entry {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.75rem;
-  }
+.badge-list {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 8px 0;
+}
+
+.badge {
+  border: none;
+  display: inline-block;
+  padding: 4px 8px;
+  vertical-align: middle;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+.description {
+  margin-top: 8px;
+}
+
+.spacer {
+  flex: 1 1 auto;
 }

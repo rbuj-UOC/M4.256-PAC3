@@ -9,31 +9,40 @@
     </mat-card-header>
     <img mat-card-image src="/assets/shiba2.jpg" alt="Photo of a Shiba Inu" />
     <mat-card-content>
-      {{ post.description }}
+      <div class="badge-list">
+        <span
+          *ngFor="let category of post.categories"
+          class="badge"
+          [ngStyle]="{ 'background-color': category.css_color }"
+        >
+          {{ category.title }}
+        </span>
+      </div>
+      <div class="description">
+        {{ post.description }}
+      </div>
     </mat-card-content>
-    <mat-card-actions class="social-network">
-      <div class="entry">
-        <button
-          mat-icon-button
-          color="primary"
-          (click)="like(post.postId)"
-          [disabled]="!showButtons"
-        >
-          <mat-icon>thumb_up</mat-icon>
-        </button>
-        {{ post.num_likes }}
-      </div>
-      <div class="entry">
-        <button
-          mat-icon-button
-          color="primary"
-          (click)="dislike(post.postId)"
-          [disabled]="!showButtons"
-        >
-          <mat-icon>thumb_down</mat-icon>
-        </button>
-        {{ post.num_dislikes }}
-      </div>
+    <mat-card-actions class="card-actions">
+      <a mat-flat-button href="#">READ MORE</a>
+      <span class="spacer"></span>
+      <button
+        mat-icon-button
+        color="primary"
+        (click)="like(post.postId)"
+        [disabled]="!showButtons"
+      >
+        <mat-icon>thumb_up</mat-icon>
+      </button>
+      {{ post.num_likes }}
+      <button
+        mat-icon-button
+        color="primary"
+        (click)="dislike(post.postId)"
+        [disabled]="!showButtons"
+      >
+        <mat-icon>thumb_down</mat-icon>
+      </button>
+      {{ post.num_dislikes }}
     </mat-card-actions>
   </mat-card>
 </div>
