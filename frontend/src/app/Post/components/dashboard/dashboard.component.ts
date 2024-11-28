@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
   posts: PostDTO[];
   numLikes: number;
   numDislikes: number;
-  pieChartData = [
+  chartData = [
     { name: 'likes', value: 0 },
     { name: 'Dislikes', value: 0 }
   ];
@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
         this.numLikes = this.numLikes + post.num_likes;
         this.numDislikes = this.numDislikes + post.num_dislikes;
       });
-      this.pieChartData = [
+      this.chartData = [
         { name: 'Likes', value: this.numLikes },
         { name: 'Dislikes', value: this.numDislikes }
       ];

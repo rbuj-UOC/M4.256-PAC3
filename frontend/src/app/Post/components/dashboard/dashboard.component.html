@@ -1,15 +1,15 @@
-<div *ngIf="posts">
-  <div>
-    <ngx-charts-pie-chart
-      [results]="pieChartData"
-      [legend]="false"
-      [legendTitle]="'Product Sale Report'"
-      [labels]="true"
-    >
-    </ngx-charts-pie-chart>
-  </div>
-  <div class="legend">
-    <p>Num likes: {{ numLikes }}</p>
-    <p>Num dislikes: {{ numDislikes }}</p>
-  </div>
+<div class="chart" *ngIf="posts">
+  <ngx-charts-bar-vertical
+    [results]="chartData"
+    [xAxisLabel]="'Ratings'"
+    [legendTitle]="'Ratings Count Chart'"
+    [yAxisLabel]="'Count'"
+    [legend]="false"
+    [showXAxisLabel]="true"
+    [showYAxisLabel]="true"
+    [xAxis]="true"
+    [yAxis]="true"
+    [gradient]="true"
+  >
+  </ngx-charts-bar-vertical>
 </div>

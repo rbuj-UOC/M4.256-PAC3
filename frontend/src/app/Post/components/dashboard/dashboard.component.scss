@@ -1,6 +1,15 @@
-.legend {
-  width: fit-content;
-  height: auto;
-  margin: 0 auto;
-  position: relative;
+@use '../../../../../node_modules/sass-mq/mq';
+
+.chart {
+  margin: 16px 0;
+
+  @include mq.mq($from: tablet) {
+    margin: 8px auto;
+    max-width: 500px;
+  }
+
+  @include mq.mq($from: desktop) {
+    margin: 16px auto;
+    max-width: 900px;
+  }
 }
