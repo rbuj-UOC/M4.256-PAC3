@@ -12,6 +12,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { FormatDatePipe } from '../Shared/Pipes/format-date.pipe';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
+import { PostCardComponent } from './components/post-card/post-card.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
 import { PostsListComponent } from './components/posts-list/posts-list.component';
 
@@ -20,8 +21,9 @@ import { PostsListComponent } from './components/posts-list/posts-list.component
     PostsListComponent,
     PostFormComponent,
     HomeComponent,
+    DashboardComponent,
     FormatDatePipe,
-    DashboardComponent
+    PostCardComponent
   ],
   imports: [
     CommonModule,

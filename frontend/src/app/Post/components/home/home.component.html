@@ -1,48 +1,9 @@
 <div class="posts-container" [@fadeInOut]>
-  <mat-card class="post-card" appearance="outlined" *ngFor="let post of posts">
-    <mat-card-header>
-      <div mat-card-avatar class="post-header-image"></div>
-      <mat-card-title>{{ post.title }}</mat-card-title>
-      <mat-card-subtitle
-        >{{ post.userAlias }} | {{ post.publication_date | formatDate: 3 }}
-      </mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="/assets/shiba2.jpg" alt="Photo of a Shiba Inu" />
-    <mat-card-content>
-      <div class="badge-list">
-        <span
-          *ngFor="let category of post.categories"
-          class="badge"
-          [ngStyle]="{ 'background-color': category.css_color }"
-        >
-          {{ category.title }}
-        </span>
-      </div>
-      <div class="description">
-        {{ post.description }}
-      </div>
-    </mat-card-content>
-    <mat-card-actions class="card-actions">
-      <a mat-flat-button href="#">READ MORE</a>
-      <span class="spacer"></span>
-      <button
-        mat-icon-button
-        color="primary"
-        (click)="like(post.postId)"
-        [disabled]="!showButtons"
-      >
-        <mat-icon>thumb_up</mat-icon>
-      </button>
-      {{ post.num_likes }}
-      <button
-        mat-icon-button
-        color="primary"
-        (click)="dislike(post.postId)"
-        [disabled]="!showButtons"
-      >
-        <mat-icon>thumb_down</mat-icon>
-      </button>
-      {{ post.num_dislikes }}
-    </mat-card-actions>
-  </mat-card>
+  <app-post-card
+    [postCardDTO]="post"
+    [showButtons]="showButtons"
+    (postLike)="like($event)"
+    (postDislike)="dislike($event)"
+    *ngFor="let post of posts"
+  ></app-post-card>
 </div>

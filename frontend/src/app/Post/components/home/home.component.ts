@@ -11,7 +11,7 @@ import { Store } from '@ngrx/store';
 import { selectCredentials } from 'src/app/Auth/selectors';
 import { SharedService } from 'src/app/Shared/Services/shared.service';
 import * as PostsAction from '../../actions';
-import { PostDTO } from '../../models/post.dto';
+import { PostCardDTO } from '../../models/post-card.dto';
 import { selectPosts } from '../../selectors';
 import { PostService } from '../../services/post.service';
 
@@ -27,33 +27,27 @@ import { PostService } from '../../services/post.service';
   ]
 })
 export class HomeComponent {
-  posts: PostDTO[];
+  posts: PostCardDTO[];
   showButtons: boolean;
-
-  private userId: string;
 
   constructor(
     private postService: PostService,
     private sharedService: SharedService,
     private store: Store
   ) {
-    this.userId = '';
-    this.posts = new Array<PostDTO>();
+    this.posts = new Array<PostCardDTO>();
     this.showButtons = false;
 
     this.store.select(selectCredentials).subscribe((credentials) => {
       this.showButtons = false;
 
-      if (credentials.user_id) {
-        this.userId = credentials.user_id;
-      }
       if (credentials.access_token) {
         this.showButtons = true;
       }
     });
 
     this.store.select(selectPosts).subscribe((posts) => {
-      this.posts = posts;
+      this.posts = <Array<PostCardDTO>>posts;
     });
   }
 

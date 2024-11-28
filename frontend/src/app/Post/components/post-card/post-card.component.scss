@@ -1,0 +1,45 @@
+@use '../../../../../node_modules/sass-mq/mq';
+
+.post-card {
+  width: 90vw;
+  @include mq.mq($from: tablet) {
+    width: 300px;
+  }
+}
+
+.post-header-image {
+  background-image: url('/assets/shiba1.jpg');
+  background-size: cover;
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+}
+
+.badge-list {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 8px 0;
+}
+
+.badge {
+  border: none;
+  display: inline-block;
+  padding: 4px 8px;
+  vertical-align: middle;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+.description {
+  margin-top: 8px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
