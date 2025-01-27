@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { selectUserId } from 'src/app/Auth/selectors';
+import { selectUserId } from '../../../Auth/selectors';
 import * as CategoriesAction from '../../actions';
 import { CategoryDTO } from '../../models/category.dto';
 import { selectCategories } from '../../selectors';
 
 @Component({
   selector: 'app-categories-list',
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
+  standalone: false,
   templateUrl: './categories-list.component.html',
   styleUrls: ['./categories-list.component.scss']
 })

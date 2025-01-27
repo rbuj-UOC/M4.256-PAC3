@@ -12,6 +12,8 @@ import { UserDTO } from '../../models/user.dto';
 
 @Component({
   selector: 'app-register',
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
+  standalone: false,
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })

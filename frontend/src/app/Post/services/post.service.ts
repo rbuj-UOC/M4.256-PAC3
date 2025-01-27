@@ -3,7 +3,7 @@ import { NONE_TYPE } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { SharedService } from 'src/app/Shared/Services/shared.service';
+import { SharedService } from '../../Shared/Services/shared.service';
 import { PostDTO } from '../models/post.dto';
 
 interface updateResponse {

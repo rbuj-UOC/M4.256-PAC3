@@ -7,12 +7,14 @@ import {
   Validators
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { selectUserId } from 'src/app/Auth/selectors';
+import { selectUserId } from '../../../Auth/selectors';
 import * as UserAction from '../../actions';
 import { UserDTO } from '../../models/user.dto';
 import { selectUser } from '../../selectors';
 @Component({
   selector: 'app-profile',
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
+  standalone: false,
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })

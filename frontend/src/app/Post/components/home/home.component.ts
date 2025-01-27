@@ -6,10 +6,10 @@ import {
   trigger
 } from '@angular/animations';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectCredentials } from 'src/app/Auth/selectors';
-import { SharedService } from 'src/app/Shared/Services/shared.service';
+import { selectCredentials } from '../../../Auth/selectors';
+import { SharedService } from '../../../Shared/Services/shared.service';
 import * as PostsAction from '../../actions';
 import { PostCardDTO } from '../../models/post-card.dto';
 import { selectPosts } from '../../selectors';
@@ -17,6 +17,8 @@ import { PostService } from '../../services/post.service';
 
 @Component({
   selector: 'app-home',
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
+  standalone: false,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   animations: [
@@ -26,7 +28,7 @@ import { PostService } from '../../services/post.service';
     ])
   ]
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   posts: PostCardDTO[];
   showButtons: boolean;
 
@@ -47,7 +49,7 @@ export class HomeComponent {
     });
 
     this.store.select(selectPosts).subscribe((posts) => {
-      this.posts = <Array<PostCardDTO>>posts;
+      this.posts = posts as PostCardDTO[];
     });
   }
 

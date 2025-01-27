@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import * as AuthAction from 'src/app/Auth/actions';
+import * as AuthAction from './Auth/actions';
 import { selectAccessToken, selectAuthStateLoading } from './Auth/selectors';
 import { selectCategoriesStateLoading } from './Category/selectors';
 import { selectPostsStateLoading } from './Post/selectors';
@@ -11,11 +11,13 @@ import { selectUserStateLoading } from './User/selectors';
 
 @Component({
   selector: 'app-root',
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
+  standalone: false,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'blog-uoc-project-front';
+  title = 'frontend';
   showAuthSection: boolean;
   showNoAuthSection: boolean;
   showLoadingAuth: boolean;

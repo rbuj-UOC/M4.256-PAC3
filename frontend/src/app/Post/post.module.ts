@@ -8,7 +8,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { FormatDatePipe } from '../Shared/Pipes/format-date.pipe';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
@@ -34,8 +33,7 @@ import { PostsListComponent } from './components/posts-list/posts-list.component
     MatIconModule,
     MatInputModule,
     MatSelectModule,
-    MatTableModule,
-    NgxChartsModule
+    MatTableModule
   ]
 })
 export class PostModule {}

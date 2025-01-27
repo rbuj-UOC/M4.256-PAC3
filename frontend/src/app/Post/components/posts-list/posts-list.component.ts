@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { selectUserId } from 'src/app/Auth/selectors';
+import { selectUserId } from '../../../Auth/selectors';
 import * as PostsAction from '../../actions';
 import { PostDTO } from '../../models/post.dto';
 import { selectPosts } from '../../selectors';
 
 @Component({
   selector: 'app-posts-list',
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
+  standalone: false,
   templateUrl: './posts-list.component.html',
   styleUrls: ['./posts-list.component.scss']
 })

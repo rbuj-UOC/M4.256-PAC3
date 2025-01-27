@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { SharedService } from 'src/app/Shared/Services/shared.service';
+import { SharedService } from '../../Shared/Services/shared.service';
 import { CategoryDTO } from '../models/category.dto';
 
 export interface deleteResponse {

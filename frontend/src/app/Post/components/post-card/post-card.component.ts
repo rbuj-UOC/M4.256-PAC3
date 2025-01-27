@@ -3,6 +3,8 @@ import { PostCardDTO } from '../../models/post-card.dto';
 
 @Component({
   selector: 'app-post-card',
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
+  standalone: false,
   templateUrl: './post-card.component.html',
   styleUrls: ['./post-card.component.scss']
 })

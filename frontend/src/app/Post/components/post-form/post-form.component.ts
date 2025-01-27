@@ -8,16 +8,18 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { selectUserId } from 'src/app/Auth/selectors';
-import { CategoryDTO } from 'src/app/Category/models/category.dto';
-import { selectCategories } from 'src/app/Category/selectors';
+import { selectUserId } from '../../../Auth/selectors';
 import * as CategoriesAction from '../../../Category/actions';
+import { CategoryDTO } from '../../../Category/models/category.dto';
+import { selectCategories } from '../../../Category/selectors';
 import * as PostsAction from '../../actions';
 import { PostDTO } from '../../models/post.dto';
 import { selectPost } from '../../selectors';
 
 @Component({
   selector: 'app-post-form',
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
+  standalone: false,
   templateUrl: './post-form.component.html',
   styleUrls: ['./post-form.component.scss']
 })

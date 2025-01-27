@@ -1,4 +1,4 @@
-import { CategoryDTO } from 'src/app/Category/models/category.dto';
+import { CategoryDTO } from '../../Category/models/category.dto';
 
 export class PostDTO {
   postId!: string;

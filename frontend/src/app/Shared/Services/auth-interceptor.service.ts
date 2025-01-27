@@ -7,7 +7,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectAccessToken } from 'src/app/Auth/selectors';
+import { selectAccessToken } from '../../Auth/selectors';
 
 @Injectable({
   providedIn: 'root'

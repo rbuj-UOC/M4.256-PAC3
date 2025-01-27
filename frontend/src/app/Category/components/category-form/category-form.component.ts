@@ -7,13 +7,15 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { selectUserId } from 'src/app/Auth/selectors';
+import { selectUserId } from '../../../Auth/selectors';
 import * as CategoriesAction from '../../actions';
 import { CategoryDTO } from '../../models/category.dto';
 import { selectCategory } from '../../selectors';
 
 @Component({
   selector: 'app-category-form',
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
+  standalone: false,
   templateUrl: './category-form.component.html',
   styleUrls: ['./category-form.component.scss']
 })

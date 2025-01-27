@@ -1,7 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'formatDate'
+  name: 'formatDate',
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
+  standalone: false
 })
 export class FormatDatePipe implements PipeTransform {
   transform(value: Date, ...args: number[]): unknown {
