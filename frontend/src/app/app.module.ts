@@ -1,5 +1,5 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { isDevMode, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,7 +13,6 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { appReducers, EffectsArray } from './app.reducers';
@@ -51,7 +50,7 @@ import { UserModule } from './User/user.module';
     EffectsModule.forRoot(EffectsArray),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
-      logOnly: environment.production
+      logOnly: !isDevMode()
     }),
     BrowserAnimationsModule
   ],
