@@ -20,14 +20,14 @@ export class AppComponent implements OnInit {
   title = 'frontend';
   showAuthSection: boolean;
   showNoAuthSection: boolean;
-  showLoadingAuth: boolean;
-  showLoadingCategories: boolean;
-  showLoadingPosts: boolean;
-  showLoadingUser: boolean;
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
   isMobile = true;
   isCollapsed = true;
+  showLoadingAuth$: any;
+  showLoadingCategories$: any;
+  showLoadingPosts$: any;
+  showLoadingUser$: any;
 
   constructor(
     private observer: BreakpointObserver,
@@ -36,10 +36,12 @@ export class AppComponent implements OnInit {
   ) {
     this.showAuthSection = false;
     this.showNoAuthSection = true;
-    this.showLoadingAuth = false;
-    this.showLoadingCategories = false;
-    this.showLoadingPosts = false;
-    this.showLoadingUser = false;
+    this.showLoadingAuth$ = this.store.select(selectAuthStateLoading);
+    this.showLoadingCategories$ = this.store.select(
+      selectCategoriesStateLoading
+    );
+    this.showLoadingPosts$ = this.store.select(selectPostsStateLoading);
+    this.showLoadingUser$ = this.store.select(selectUserStateLoading);
   }
   ngOnInit(): void {
     this.observer.observe(['(max-width: 740px)']).subscribe((screenSize) => {
@@ -55,30 +57,6 @@ export class AppComponent implements OnInit {
       if (access_token) {
         this.showAuthSection = true;
         this.showNoAuthSection = false;
-      }
-    });
-    this.store.select(selectAuthStateLoading).subscribe((loading) => {
-      this.showLoadingAuth = false;
-      if (loading) {
-        this.showLoadingAuth = true;
-      }
-    });
-    this.store.select(selectCategoriesStateLoading).subscribe((loading) => {
-      this.showLoadingCategories = false;
-      if (loading) {
-        this.showLoadingCategories = true;
-      }
-    });
-    this.store.select(selectPostsStateLoading).subscribe((loading) => {
-      this.showLoadingPosts = false;
-      if (loading) {
-        this.showLoadingPosts = true;
-      }
-    });
-    this.store.select(selectUserStateLoading).subscribe((loading) => {
-      this.showLoadingUser = false;
-      if (loading) {
-        this.showLoadingUser = true;
       }
     });
   }
