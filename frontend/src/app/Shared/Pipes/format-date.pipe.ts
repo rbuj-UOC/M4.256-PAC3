@@ -7,22 +7,17 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FormatDatePipe implements PipeTransform {
   transform(value: Date, ...args: number[]): unknown {
-    let dd: number;
-    let mm: number;
-    let yyyy: number;
-    let ddFormat: string;
-    let mmFormat: string;
     let newFormat = '';
 
     const dateTransform = new Date(value);
     const type: number = args[0];
 
-    dd = dateTransform.getDate();
-    mm = dateTransform.getMonth() + 1;
-    yyyy = dateTransform.getFullYear();
+    const dd = dateTransform.getDate();
+    const mm = dateTransform.getMonth() + 1;
+    const yyyy = dateTransform.getFullYear();
 
-    ddFormat = this.needZero(dd);
-    mmFormat = this.needZero(mm);
+    const ddFormat = this.needZero(dd);
+    const mmFormat = this.needZero(mm);
 
     if (type === 1) {
       newFormat = ddFormat + mmFormat + yyyy;
