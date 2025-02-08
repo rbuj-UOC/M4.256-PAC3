@@ -18,6 +18,19 @@ $show-breakpoints: ();
   $show-breakpoints: $show-breakpoints
 );
 
+@use '@angular/material' as mat;
+
+html {
+  color-scheme: light dark;
+  @include mat.theme(
+    (
+      color: mat.$blue-palette,
+      typography: Roboto,
+      density: 0
+    )
+  );
+}
+
 html,
 body {
   height: 100%;
@@ -26,7 +39,8 @@ body {
 
 body {
   margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
 }
 
 .full-width {
