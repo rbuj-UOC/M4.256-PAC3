@@ -1,9 +1,13 @@
 mat-toolbar {
-  background: var(--mat-sys-secondary-container);
-  color: var(--mat-sys-on-secondary-container);
+  background: var(--mat-sys-secondary);
+  color: var(--mat-sys-on-secondary);
   position: fixed;
   top: 0;
   z-index: 2;
+  button {
+    background: var(--mat-sys-secondary);
+    color: var(--mat-sys-on-secondary);
+  }
 }
 
 mat-sidenav-container {
@@ -14,8 +18,9 @@ mat-sidenav-container {
 mat-sidenav {
   padding-top: 3.5rem;
   transition: width 0.3s ease;
-  background: var(--mat-sys-secondary-container);
-  color: var(--mat-sys-on-secondary-container);
+  background: var(--mat-sys-secondary);
+  color: var(--mat-sys-on-secondary);
+
   @media screen and (min-width: 600px) {
     padding-top: 4rem;
   }
@@ -25,6 +30,8 @@ mat-sidenav {
     align-items: center;
     gap: 1rem;
     padding: 0.75rem;
+    background: var(--mat-sys-secondary);
+    color: var(--mat-sys-on-secondary);
   }
 }
 
