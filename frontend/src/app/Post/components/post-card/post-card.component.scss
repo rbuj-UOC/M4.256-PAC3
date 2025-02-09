@@ -1,8 +1,6 @@
-@use '../../../../../node_modules/sass-mq/mq';
-
 .post-card {
   width: 90vw;
-  @include mq.mq($from: tablet) {
+  @media screen and (min-width: 740px) {
     width: 300px;
   }
 }

@@ -1,22 +1,3 @@
-@use '../../../../../node_modules/sass-mq/mq';
-
-// Name your breakpoints in a way that creates a ubiquitous language
-// across team members. It will improve communication between
-// stakeholders, designers, developers, and testers.
-// $breakpoints: (
-//   mobile: 320px,
-//   tablet: 740px,
-//   desktop: 1240px
-// );
-// If you want to display the currently active breakpoint in the top
-// right corner of your site during development, add the breakpoints
-// to this list, ordered by width. For examples: (mobile, tablet, desktop).
-// $show-breakpoints: (mobile, tablet, desktop);
-// @use '../../../../../node_modules/sass-mq/mq' with (
-//   $breakpoints: $breakpoints,
-//   $show-breakpoints: $show-breakpoints
-// );
-
 #profileFeedback {
   visibility: hidden;
   min-width: 250px;
@@ -76,11 +57,11 @@
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
 
-  @include mq.mq($from: tablet) {
+  @media screen and (min-width: 740px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include mq.mq($from: desktop) {
+  @media screen and (min-width: 1240px) {
     grid-template-columns: repeat(3, 1fr);
   }
 }

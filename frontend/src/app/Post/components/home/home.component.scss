@@ -1,16 +1,16 @@
-@use '../../../../../node_modules/sass-mq/mq';
-
 .posts-container {
   padding: 8px;
   display: grid;
   grid-gap: 10px;
   margin-bottom: 60px;
   justify-content: space-around;
-  @include mq.mq($from: tablet) {
+
+  @media screen and (min-width: 740px) {
     justify-content: center;
     grid-template-columns: repeat(auto-fill, 300px);
   }
-  @include mq.mq($from: desktop) {
+
+  @media screen and (min-width: 1240px) {
     justify-content: start;
   }
 }

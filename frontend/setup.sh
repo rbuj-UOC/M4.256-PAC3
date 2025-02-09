@@ -15,7 +15,7 @@ ng add @ngrx/store-devtools --defaults --skip-confirmation
 ng add @angular/material --skip-confirmation --defaults
 
 npm install --save-dev prettier prettier-eslint eslint-config-prettier eslint-plugin-prettier
-npm install --save chart.js sass-mq
+npm install --save chart.js
 
 # overwrite / create config files
 cat << EOF > eslint.config.js
