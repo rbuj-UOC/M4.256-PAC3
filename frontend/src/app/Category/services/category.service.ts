@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 import { SharedService } from '../../Shared/Services/shared.service';
 import { CategoryDTO } from '../models/category.dto';
 
@@ -21,12 +22,12 @@ export class CategoryService {
     private sharedService: SharedService
   ) {
     this.controller = 'categories';
-    this.urlBlogUocApi = 'http://localhost:3000/' + this.controller;
+    this.urlBlogUocApi = environment.apiUrl + '/' + this.controller;
   }
 
   getCategoriesByUserId(userId: string): Observable<CategoryDTO[]> {
     return this.http
-      .get<CategoryDTO[]>('http://localhost:3000/users/categories/' + userId)
+      .get<CategoryDTO[]>(environment.apiUrl + '/users/categories/' + userId)
       .pipe(catchError(this.sharedService.handleError));
   }
 

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 import { SharedService } from '../../Shared/Services/shared.service';
 import { AuthDTO } from '../models/auth.dto';
 
@@ -22,7 +23,7 @@ export class AuthService {
     private sharedService: SharedService
   ) {
     this.controller = 'auth';
-    this.urlBlogUocApi = 'http://localhost:3000/' + this.controller;
+    this.urlBlogUocApi = environment.apiUrl + '/' + this.controller;
   }
 
   login(auth: AuthDTO): Observable<AuthToken> {

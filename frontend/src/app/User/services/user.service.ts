@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 import { SharedService } from '../../Shared/Services/shared.service';
 import { UserDTO } from '../models/user.dto';
 
@@ -17,7 +18,7 @@ export class UserService {
     private sharedService: SharedService
   ) {
     this.controller = 'users';
-    this.urlBlogUocApi = 'http://localhost:3000/' + this.controller;
+    this.urlBlogUocApi = environment.apiUrl + '/' + this.controller;
   }
 
   register(user: UserDTO): Observable<UserDTO> {

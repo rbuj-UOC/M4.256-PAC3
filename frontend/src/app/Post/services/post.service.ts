@@ -3,6 +3,7 @@ import { NONE_TYPE } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 import { SharedService } from '../../Shared/Services/shared.service';
 import { PostDTO } from '../models/post.dto';
 
@@ -26,7 +27,7 @@ export class PostService {
     private sharedService: SharedService
   ) {
     this.controller = 'posts';
-    this.urlBlogUocApi = 'http://localhost:3000/' + this.controller;
+    this.urlBlogUocApi = environment.apiUrl + '/' + this.controller;
   }
 
   getPosts(): Observable<PostDTO[]> {
@@ -37,7 +38,7 @@ export class PostService {
 
   getPostsByUserId(userId: string): Observable<PostDTO[]> {
     return this.http
-      .get<PostDTO[]>('http://localhost:3000/users/posts/' + userId)
+      .get<PostDTO[]>(environment.apiUrl + '/users/posts/' + userId)
       .pipe(catchError(this.sharedService.handleError));
   }
 
