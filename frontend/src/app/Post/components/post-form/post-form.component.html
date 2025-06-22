@@ -45,8 +45,7 @@
           <select matNativeControl multiple [formControl]="categories">
             <option
               *ngFor="let category of categoriesList"
-              [ngValue]="category.categoryId"
-            >
+              [ngValue]="category.categoryId">
               {{ category.title }}
             </option>
           </select>

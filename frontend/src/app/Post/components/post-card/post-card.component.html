@@ -13,8 +13,7 @@
       <span
         *ngFor="let category of postCardDTO.categories"
         class="badge"
-        [ngStyle]="{ 'background-color': category.css_color }"
-      >
+        [ngStyle]="{ 'background-color': category.css_color }">
         {{ category.title }}
       </span>
     </div>
@@ -29,8 +28,7 @@
       mat-icon-button
       color="primary"
       (click)="postLikeClick()"
-      [disabled]="!showButtons"
-    >
+      [disabled]="!showButtons">
       <mat-icon>thumb_up</mat-icon>
     </button>
     {{ postCardDTO.num_likes }}
@@ -38,8 +36,7 @@
       mat-icon-button
       color="primary"
       (click)="postDislikeClick()"
-      [disabled]="!showButtons"
-    >
+      [disabled]="!showButtons">
       <mat-icon>thumb_down</mat-icon>
     </button>
     {{ postCardDTO.num_dislikes }}
