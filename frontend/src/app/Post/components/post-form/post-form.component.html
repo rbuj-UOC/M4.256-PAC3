@@ -6,53 +6,51 @@
     <h1>Post form</h1>
   </mat-card-header>
   <mat-card-content>
-    <form *ngIf="postForm" [formGroup]="postForm" (ngSubmit)="savePost()">
-      <div class="post-line">
-        <mat-form-field>
-          <mat-label for="title">Title:</mat-label>
-          <input matInput type="text" [formControl]="title" />
-          <mat-error *ngIf="title.hasError('required')"
-            >Title is required</mat-error
-          >
-          <mat-error *ngIf="title.hasError('maxlength')">
-            Title can be max 55 characters long.
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label for="description">Description:</mat-label>
-          <input matInput type="text" [formControl]="description" />
-          <mat-error *ngIf="description.hasError('required')">
-            Description is required
-          </mat-error>
-          <mat-error *ngIf="description.hasError('maxlength')">
-            Description can be max 255 characters long.
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Publication date: </mat-label>
-          <input matInput type="date" [formControl]="publication_date" />
-          <mat-error *ngIf="publication_date.hasError('required')">
-            Publication date is required
-          </mat-error>
-        </mat-form-field>
-      </div>
-
-      <div class="post-line">
-        <mat-form-field>
-          <mat-label>Choose categories:</mat-label>
-          <select matNativeControl multiple [formControl]="categories">
-            <option
-              *ngFor="let category of categoriesList"
-              [ngValue]="category.categoryId">
-              {{ category.title }}
-            </option>
-          </select>
-        </mat-form-field>
-      </div>
-
-      <button mat-flat-button color="primary" type="submit">SAVE</button>
-    </form>
+    @if (postForm) {
+      <form [formGroup]="postForm" (ngSubmit)="savePost()">
+        <div class="post-line">
+          <mat-form-field>
+            <mat-label for="title">Title:</mat-label>
+            <input matInput type="text" [formControl]="title" />
+            @if (title.hasError('required')) {
+              <mat-error>Title is required</mat-error>
+            } @else if (title.hasError('maxlength')) {
+              <mat-error>Title can be max 55 characters long.</mat-error>
+            }
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label for="description">Description:</mat-label>
+            <input matInput type="text" [formControl]="description" />
+            @if (description.hasError('required')) {
+              <mat-error>Description is required</mat-error>
+            } @else if (description.hasError('maxlength')) {
+              <mat-error>
+                Description can be max 255 characters long.
+              </mat-error>
+            }
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Publication date: </mat-label>
+            <input matInput type="date" [formControl]="publication_date" />
+            @if (publication_date.hasError('required')) {
+              <mat-error>Publication date is required</mat-error>
+            }
+          </mat-form-field>
+        </div>
+        <div class="post-line">
+          <mat-form-field>
+            <mat-label>Choose categories:</mat-label>
+            <select matNativeControl multiple [formControl]="categories">
+              @for (category of categoriesList; track category.categoryId) {
+                <option [ngValue]="category.categoryId">
+                  {{ category.title }}
+                </option>
+              }
+            </select>
+          </mat-form-field>
+        </div>
+        <button mat-flat-button color="primary" type="submit">SAVE</button>
+      </form>
+    }
   </mat-card-content>
 </mat-card>

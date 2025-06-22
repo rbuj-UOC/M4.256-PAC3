@@ -6,46 +6,41 @@
     <h1>Category form</h1>
   </mat-card-header>
   <mat-card-content>
-    <form
-      *ngIf="categoryForm"
-      [formGroup]="categoryForm"
-      (ngSubmit)="saveCategory()">
-      <div class="category-line">
-        <mat-form-field>
-          <mat-label for="title">Title:</mat-label>
-          <input matInput type="text" [formControl]="title" />
-          <mat-error *ngIf="title.hasError('required')"
-            >Title is required</mat-error
-          >
-          <mat-error *ngIf="title.hasError('maxlength')">
-            Title can be max 55 characters long.
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label for="description">Description:</mat-label>
-          <input matInput type="text" [formControl]="description" />
-          <mat-error *ngIf="description.hasError('required')"
-            >Description is required</mat-error
-          >
-          <mat-error *ngIf="description.hasError('maxlength')">
-            Description can be max 255 characters long.
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label for="css_color">Css color:</mat-label>
-          <input matInput type="text" [formControl]="css_color" />
-          <mat-error *ngIf="css_color.hasError('required')"
-            >Css color is required</mat-error
-          >
-          <mat-error *ngIf="css_color.hasError('maxlength')">
-            Css color can be max 7 characters long.
-          </mat-error>
-        </mat-form-field>
-      </div>
-
-      <button mat-flat-button color="primary" type="submit">SAVE</button>
-    </form>
+    @if (categoryForm) {
+      <form [formGroup]="categoryForm" (ngSubmit)="saveCategory()">
+        <div class="category-line">
+          <mat-form-field>
+            <mat-label for="title">Title:</mat-label>
+            <input matInput type="text" [formControl]="title" />
+            @if (title.hasError('required')) {
+              <mat-error>Title is required</mat-error>
+            } @else if (title.hasError('maxlength')) {
+              <mat-error> Title can be max 55 characters long. </mat-error>
+            }
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label for="description">Description:</mat-label>
+            <input matInput type="text" [formControl]="description" />
+            @if (description.hasError('required')) {
+              <mat-error>Description is required</mat-error>
+            } @else if (description.hasError('maxlength')) {
+              <mat-error>
+                Description can be max 255 characters long.
+              </mat-error>
+            }
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label for="css_color">Css color:</mat-label>
+            <input matInput type="text" [formControl]="css_color" />
+            @if (css_color.hasError('required')) {
+              <mat-error>Css color is required</mat-error>
+            } @else if (css_color.hasError('maxlength')) {
+              <mat-error> Css color can be max 7 characters long. </mat-error>
+            }
+          </mat-form-field>
+        </div>
+        <button mat-flat-button color="primary" type="submit">SAVE</button>
+      </form>
+    }
   </mat-card-content>
 </mat-card>

@@ -1,3 +1,5 @@
-<div class="chart" *ngIf="posts">
-  <canvas id="chart">{{ chart }}</canvas>
-</div>
+@if (posts) {
+  <div class="chart">
+    <canvas id="chart">{{ chart }}</canvas>
+  </div>
+}

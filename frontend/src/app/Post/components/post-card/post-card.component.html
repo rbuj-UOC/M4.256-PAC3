@@ -10,12 +10,13 @@
   <img mat-card-image src="./shiba2.jpg" alt="Photo of a Shiba Inu" />
   <mat-card-content>
     <div class="badge-list">
-      <span
-        *ngFor="let category of postCardDTO.categories"
-        class="badge"
-        [ngStyle]="{ 'background-color': category.css_color }">
-        {{ category.title }}
-      </span>
+      @for (category of postCardDTO.categories; track category.categoryId) {
+        <span
+          class="badge"
+          [ngStyle]="{ 'background-color': category.css_color }">
+          {{ category.title }}
+        </span>
+      }
     </div>
     <div class="description">
       {{ postCardDTO.description }}

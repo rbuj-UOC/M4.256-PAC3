@@ -11,62 +11,59 @@
         <mat-form-field class="full-width">
           <mat-label>Name</mat-label>
           <input matInput type="text" [formControl]="name" />
-          <mat-error *ngIf="name.hasError('required')"
-            >Name is required</mat-error
-          >
-          <mat-error *ngIf="name.hasError('minlength')">
-            Name must be at least 5 characters long.
-          </mat-error>
-          <mat-error *ngIf="name.hasError('maxlength')">
-            Name can be max 25 characters long.
-          </mat-error>
+          @if (name.hasError('required')) {
+            <mat-error>Name is required</mat-error>
+          } @else if (name.hasError('minlength')) {
+            <mat-error> Name must be at least 5 characters long. </mat-error>
+          } @else if (name.hasError('maxlength')) {
+            <mat-error> Name can be max 25 characters long. </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field class="full-width">
           <mat-label>Surname1</mat-label>
           <input matInput type="text" [formControl]="surname_1" />
-          <mat-error *ngIf="surname_1.hasError('required')"
-            >Surname1 is required</mat-error
-          >
-          <mat-error *ngIf="surname_1.hasError('minlength')">
-            Surname1 must be at least 5 characters long.
-          </mat-error>
-          <mat-error *ngIf="surname_1.hasError('maxlength')">
-            Surname1 can be max 25 characters long.
-          </mat-error>
+          @if (surname_1.hasError('required')) {
+            <mat-error>Surname1 is required</mat-error>
+          } @else if (surname_1.hasError('minlength')) {
+            <mat-error>
+              Surname1 must be at least 5 characters long.
+            </mat-error>
+          } @else if (surname_1.hasError('maxlength')) {
+            <mat-error> Surname1 can be max 25 characters long. </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field class="full-width">
           <mat-label>Surname2</mat-label>
           <input matInput type="text" [formControl]="surname_2" />
-          <mat-error *ngIf="surname_2.hasError('minlength')">
-            Surname2 must be at least 5 characters long.
-          </mat-error>
-          <mat-error *ngIf="surname_2.hasError('maxlength')">
-            Surname2 can be max 25 characters long.
-          </mat-error>
+          @if (surname_2.hasError('minlength')) {
+            <mat-error>
+              Surname2 must be at least 5 characters long.
+            </mat-error>
+          } @else if (surname_2.hasError('maxlength')) {
+            <mat-error> Surname2 can be max 25 characters long. </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field class="full-width">
           <mat-label>Alias</mat-label>
           <input matInput type="text" [formControl]="alias" />
-          <mat-error *ngIf="alias.hasError('required')"
-            >Alias is required</mat-error
-          >
-          <mat-error *ngIf="alias.hasError('minlength')">
-            Alias must be at least 5 characters long.
-          </mat-error>
-          <mat-error *ngIf="alias.hasError('maxlength')">
-            Alias can be max 25 characters long.
-          </mat-error>
+          @if (alias.hasError('required')) {
+            <mat-error>Alias is required</mat-error>
+          } @else if (alias.hasError('minlength')) {
+            <mat-error> Alias must be at least 5 characters long. </mat-error>
+          } @else if (alias.hasError('maxlength')) {
+            <mat-error> Alias can be max 25 characters long. </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field class="full-width">
           <mat-label>Birth date</mat-label>
           <input matInput type="date" [formControl]="birth_date" />
-          <mat-error *ngIf="birth_date.hasError('required')"
-            >Birth date is required</mat-error
-          >
+          @if (birth_date.hasError('required')) {
+            <mat-error>Birth date is required</mat-error>
+          }
         </mat-form-field>
       </div>
 
@@ -74,23 +71,23 @@
         <mat-form-field class="full-width">
           <mat-label>Email</mat-label>
           <input matInput type="email" [formControl]="email" />
-          <mat-error *ngIf="email.hasError('required')"
-            >Email is required</mat-error
-          >
-          <mat-error *ngIf="email.hasError('pattern')"
-            >Email not a valid format.</mat-error
-          >
+          @if (email.hasError('required')) {
+            <mat-error>Email is required</mat-error>
+          } @else if (email.hasError('pattern')) {
+            <mat-error>Email not a valid format.</mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field class="full-width">
           <mat-label>Password</mat-label>
           <input matInput type="password" [formControl]="password" />
-          <mat-error *ngIf="password.hasError('required')"
-            >Password is required</mat-error
-          >
-          <mat-error *ngIf="password.hasError('minlength')">
-            Password must be at least 8 characters long.
-          </mat-error>
+          @if (password.hasError('required')) {
+            <mat-error>Password is required</mat-error>
+          } @else if (password.hasError('minlength')) {
+            <mat-error>
+              Password must be at least 8 characters long.
+            </mat-error>
+          }
         </mat-form-field>
       </div>
 

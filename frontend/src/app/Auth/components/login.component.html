@@ -10,26 +10,23 @@
       <mat-form-field appearance="fill">
         <mat-label>Email</mat-label>
         <input matInput type="email" [formControl]="email" />
-        <mat-error *ngIf="email.hasError('required')"
-          >Email is required</mat-error
-        >
-        <mat-error *ngIf="email.hasError('pattern')"
-          >Email not a valid format.</mat-error
-        >
+        @if (email.hasError('required')) {
+          <mat-error>Email is required</mat-error>
+        } @else if (email.hasError('pattern')) {
+          <mat-error>Email not a valid format.</mat-error>
+        }
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>Password</mat-label>
         <input matInput type="password" [formControl]="password" />
-        <mat-error *ngIf="password.hasError('required')"
-          >Password is required</mat-error
-        >
-        <mat-error *ngIf="password.hasError('minlength')"
-          >Password must be greater tha 8 characters</mat-error
-        >
-        <mat-error *ngIf="password.hasError('maxlength')"
-          >Password can be max 16 characters long</mat-error
-        >
+        @if (password.hasError('required')) {
+          <mat-error>Password is required</mat-error>
+        } @else if (password.hasError('minlength')) {
+          <mat-error>Password must be greater tha 8 characters</mat-error>
+        } @else if (password.hasError('maxlength')) {
+          <mat-error>Password can be max 16 characters long</mat-error>
+        }
       </mat-form-field>
 
       <button

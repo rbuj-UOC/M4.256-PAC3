@@ -1,26 +1,38 @@
-<app-spinner *ngIf="showLoadingAuth$ | async"></app-spinner>
-<app-spinner *ngIf="showLoadingCategories$ | async"></app-spinner>
-<app-spinner *ngIf="showLoadingPosts$ | async"></app-spinner>
-<app-spinner *ngIf="showLoadingUser$ | async"></app-spinner>
+@if (showLoadingAuth$ | async) {
+  <app-spinner></app-spinner>
+}
+@if (showLoadingCategories$ | async) {
+  <app-spinner></app-spinner>
+}
+@if (showLoadingPosts$ | async) {
+  <app-spinner></app-spinner>
+}
+@if (showLoadingUser$ | async) {
+  <app-spinner></app-spinner>
+}
 
 <!-- NO AUTH REQUIRED -->
-<mat-toolbar *ngIf="showNoAuthSection" color="primary">
-  <button mat-icon-button aria-label="Menu icon" (click)="toggleMenu()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span class="toolbar-spacer"></span>
-  <button mat-flat-button color="primary" (click)="login()">Login</button>
-  <button mat-flat-button color="primary" (click)="register()">Register</button>
-</mat-toolbar>
+@if (showNoAuthSection) {
+  <mat-toolbar color="primary">
+    <button mat-icon-button aria-label="Menu icon" (click)="toggleMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="toolbar-spacer"></span>
+    <button mat-flat-button color="primary" (click)="login()">Login</button>
+    <button mat-flat-button color="primary" (click)="register()">Register</button>
+  </mat-toolbar>
+}
 <!-- AUTH REQUIRED -->
-<mat-toolbar *ngIf="showAuthSection" color="primary">
-  <button mat-icon-button aria-label="Menu icon" (click)="toggleMenu()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span class="toolbar-spacer"></span>
-  <button mat-flat-button color="primary" (click)="profile()">Profile</button>
-  <button mat-flat-button color="primary" (click)="logout()">Logout</button>
-</mat-toolbar>
+@if (showAuthSection) {
+  <mat-toolbar color="primary">
+    <button mat-icon-button aria-label="Menu icon" (click)="toggleMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="toolbar-spacer"></span>
+    <button mat-flat-button color="primary" (click)="profile()">Profile</button>
+    <button mat-flat-button color="primary" (click)="logout()">Logout</button>
+  </mat-toolbar>
+}
 
 <mat-sidenav-container autosize="true">
   <mat-sidenav
@@ -31,35 +43,47 @@
       <a mat-list-item routerLinkActive (click)="dashboard()">
         <span class="entry">
           <mat-icon>dashboard</mat-icon>
-          <span *ngIf="!isCollapsed">Dashboard</span>
+          @if (!isCollapsed) {
+            <span>Dashboard</span>
+          }
         </span>
       </a>
       <a mat-list-item routerLinkActive (click)="home()">
         <span class="entry">
           <mat-icon>home</mat-icon>
-          <span *ngIf="!isCollapsed">Home</span>
+          @if (!isCollapsed) {
+            <span>Home</span>
+          }
         </span>
       </a>
-      <a
-        mat-list-item
-        routerLinkActive
-        (click)="adminPosts()"
-        *ngIf="showAuthSection">
-        <span class="entry">
-          <mat-icon>book</mat-icon>
-          <span *ngIf="!isCollapsed">Admin Posts</span>
-        </span>
-      </a>
-      <a
-        mat-list-item
-        routerLinkActive
-        (click)="adminCategories()"
-        *ngIf="showAuthSection">
-        <span class="entry">
-          <mat-icon>label</mat-icon>
-          <span *ngIf="!isCollapsed">Admin Categories</span>
-        </span>
-      </a>
+      @if (showAuthSection) {
+        <a
+          mat-list-item
+          routerLinkActive
+          (click)="adminPosts()"
+          >
+          <span class="entry">
+            <mat-icon>book</mat-icon>
+            @if (!isCollapsed) {
+              <span>Admin Posts</span>
+            }
+          </span>
+        </a>
+      }
+      @if (showAuthSection) {
+        <a
+          mat-list-item
+          routerLinkActive
+          (click)="adminCategories()"
+          >
+          <span class="entry">
+            <mat-icon>label</mat-icon>
+            @if (!isCollapsed) {
+              <span>Admin Categories</span>
+            }
+          </span>
+        </a>
+      }
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
