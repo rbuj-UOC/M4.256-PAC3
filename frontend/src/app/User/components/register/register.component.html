@@ -10,7 +10,11 @@
       <div class="register-line">
         <mat-form-field class="full-width">
           <mat-label>Name</mat-label>
-          <input matInput type="text" [formControl]="name" />
+          <input
+            matInput
+            type="text"
+            autocomplete="given-name"
+            [formControl]="name" />
           @if (name.hasError('required')) {
             <mat-error>Name is required</mat-error>
           } @else if (name.hasError('minlength')) {
@@ -22,7 +26,11 @@
 
         <mat-form-field class="full-width">
           <mat-label>Surname1</mat-label>
-          <input matInput type="text" [formControl]="surname_1" />
+          <input
+            matInput
+            type="text"
+            autocomplete="family-name"
+            [formControl]="surname_1" />
           @if (surname_1.hasError('required')) {
             <mat-error>Surname1 is required</mat-error>
           } @else if (surname_1.hasError('minlength')) {
@@ -48,7 +56,11 @@
 
         <mat-form-field class="full-width">
           <mat-label>Alias</mat-label>
-          <input matInput type="text" [formControl]="alias" />
+          <input
+            matInput
+            type="text"
+            autocomplete="nickname"
+            [formControl]="alias" />
           @if (alias.hasError('required')) {
             <mat-error>Alias is required</mat-error>
           } @else if (alias.hasError('minlength')) {
@@ -60,7 +72,11 @@
 
         <mat-form-field class="full-width">
           <mat-label>Birth date</mat-label>
-          <input matInput type="date" [formControl]="birth_date" />
+          <input
+            matInput
+            type="date"
+            autocomplete="bday"
+            [formControl]="birth_date" />
           @if (birth_date.hasError('required')) {
             <mat-error>Birth date is required</mat-error>
           }
@@ -70,7 +86,11 @@
       <div class="register-line">
         <mat-form-field class="full-width">
           <mat-label>Email</mat-label>
-          <input matInput type="email" [formControl]="email" />
+          <input
+            matInput
+            type="email"
+            autocomplete="email"
+            [formControl]="email" />
           @if (email.hasError('required')) {
             <mat-error>Email is required</mat-error>
           } @else if (email.hasError('pattern')) {
@@ -80,7 +100,11 @@
 
         <mat-form-field class="full-width">
           <mat-label>Password</mat-label>
-          <input matInput type="password" [formControl]="password" />
+          <input
+            matInput
+            type="password"
+            autocomplete="new-password"
+            [formControl]="password" />
           @if (password.hasError('required')) {
             <mat-error>Password is required</mat-error>
           } @else if (password.hasError('minlength')) {

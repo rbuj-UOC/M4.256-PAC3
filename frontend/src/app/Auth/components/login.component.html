@@ -9,7 +9,11 @@
     <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
       <mat-form-field appearance="fill">
         <mat-label>Email</mat-label>
-        <input matInput type="email" [formControl]="email" />
+        <input
+          matInput
+          type="email"
+          autocomplete="username"
+          [formControl]="email" />
         @if (email.hasError('required')) {
           <mat-error>Email is required</mat-error>
         } @else if (email.hasError('pattern')) {
@@ -19,7 +23,11 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Password</mat-label>
-        <input matInput type="password" [formControl]="password" />
+        <input
+          matInput
+          type="password"
+          autocomplete="current-password"
+          [formControl]="password" />
         @if (password.hasError('required')) {
           <mat-error>Password is required</mat-error>
         } @else if (password.hasError('minlength')) {
