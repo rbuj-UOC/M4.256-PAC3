@@ -32,10 +32,12 @@ export class DashboardComponent implements OnInit {
       this.posts = posts;
       this.numLikes = 0;
       this.numDislikes = 0;
-      this.posts.forEach((post) => {
-        this.numLikes = this.numLikes + post.num_likes;
-        this.numDislikes = this.numDislikes + post.num_dislikes;
-      });
+      if (this.posts && this.posts.length > 0) {
+        this.posts.forEach((post) => {
+          this.numLikes = this.numLikes + post.num_likes;
+          this.numDislikes = this.numDislikes + post.num_dislikes;
+        });
+      }
       if (!this.chart) {
         this.chart = new Chart('chart', {
           type: 'bar' as ChartType,
