@@ -36,31 +36,36 @@ export class DashboardComponent implements OnInit {
         this.numLikes = this.numLikes + post.num_likes;
         this.numDislikes = this.numDislikes + post.num_dislikes;
       });
-      this.chart = new Chart('chart', {
-        type: 'bar' as ChartType,
-        data: {
-          labels: ['Likes', 'Dislikes'],
-          datasets: [
-            {
-              label: 'Likes/Dislikes',
-              data: [this.numLikes, this.numDislikes],
-              backgroundColor: [
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 99, 132, 0.2)'
-              ],
-              borderWidth: 1
-            }
-          ]
-        },
-        options: {
-          plugins: {
-            title: {
-              display: true,
-              text: 'Student Gender'
+      if (!this.chart) {
+        this.chart = new Chart('chart', {
+          type: 'bar' as ChartType,
+          data: {
+            labels: ['Likes', 'Dislikes'],
+            datasets: [
+              {
+                label: 'Likes/Dislikes',
+                data: [this.numLikes, this.numDislikes],
+                backgroundColor: [
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 99, 132, 0.2)'
+                ],
+                borderWidth: 1
+              }
+            ]
+          },
+          options: {
+            plugins: {
+              title: {
+                display: true,
+                text: 'Student Gender'
+              }
             }
           }
-        }
-      });
+        });
+      } else {
+        this.chart.data.datasets[0].data = [this.numLikes, this.numDislikes];
+        this.chart.update();
+      }
     });
   }
 
