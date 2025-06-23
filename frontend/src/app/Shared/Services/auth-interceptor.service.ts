@@ -4,7 +4,7 @@ import {
   HttpInterceptor,
   HttpRequest
 } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectAccessToken } from '../../Auth/selectors';
@@ -13,9 +13,11 @@ import { selectAccessToken } from '../../Auth/selectors';
   providedIn: 'root'
 })
 export class AuthInterceptorService implements HttpInterceptor {
+  private store = inject(Store);
+
   private access_token = '';
 
-  constructor(private store: Store) {
+  constructor() {
     this.store.select(selectAccessToken).subscribe((access_token) => {
       this.access_token = '';
       if (access_token) {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import Chart, { ChartType } from 'chart.js/auto';
 import * as PostsAction from '../../actions';
@@ -13,6 +13,8 @@ import { selectPosts } from '../../selectors';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  private store = inject(Store);
+
   posts: PostDTO[];
   numLikes: number;
   numDislikes: number;
@@ -23,7 +25,7 @@ export class DashboardComponent implements OnInit {
     { name: 'Dislikes', value: 0 }
   ];
 
-  constructor(private store: Store) {
+  constructor() {
     this.posts = new Array<PostDTO>();
     this.numLikes = 0;
     this.numDislikes = 0;

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
@@ -15,13 +15,13 @@ export interface AuthToken {
   providedIn: 'root'
 })
 export class AuthService {
+  private http = inject(HttpClient);
+  private sharedService = inject(SharedService);
+
   private urlBlogUocApi: string;
   private controller: string;
 
-  constructor(
-    private http: HttpClient,
-    private sharedService: SharedService
-  ) {
+  constructor() {
     this.controller = 'auth';
     this.urlBlogUocApi = environment.apiUrl + '/' + this.controller;
   }

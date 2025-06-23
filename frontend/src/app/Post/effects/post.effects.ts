@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
@@ -9,6 +9,11 @@ import { PostService } from '../services/post.service';
 
 @Injectable()
 export class PostsEffects {
+  private actions$ = inject(Actions);
+  private postService = inject(PostService);
+  private sharedService = inject(SharedService);
+  private router = inject(Router);
+
   private responseOK: boolean;
   private errorResponse: any;
   getPostsByUserId$: any;
@@ -30,12 +35,7 @@ export class PostsEffects {
   dislikePost$: any;
   dislikePostFailure$: any;
 
-  constructor(
-    private actions$: Actions,
-    private postService: PostService,
-    private sharedService: SharedService,
-    private router: Router
-  ) {
+  constructor() {
     this.responseOK = false;
 
     this.getPostsByUserId$ = createEffect(() => {

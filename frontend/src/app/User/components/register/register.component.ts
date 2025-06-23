@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -18,6 +18,9 @@ import { UserDTO } from '../../models/user.dto';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+  private formBuilder = inject(FormBuilder);
+  private store = inject(Store);
+
   registerUser: UserDTO;
 
   name: FormControl;
@@ -31,10 +34,7 @@ export class RegisterComponent {
   registerForm: FormGroup;
   isValidForm: boolean | null;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private store: Store
-  ) {
+  constructor() {
     this.registerUser = new UserDTO('', '', '', '', new Date(), '', '');
 
     this.isValidForm = null;

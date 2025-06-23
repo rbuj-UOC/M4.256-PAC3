@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -17,14 +17,14 @@ import { AuthDTO } from '../models/auth.dto';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  private formBuilder = inject(FormBuilder);
+  private store = inject(Store);
+
   email: FormControl;
   password: FormControl;
   loginForm: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private store: Store
-  ) {
+  constructor() {
     this.email = new FormControl('', [
       Validators.required,
       Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { selectUserId } from '../../../Auth/selectors';
@@ -14,6 +14,9 @@ import { selectCategories } from '../../selectors';
   styleUrls: ['./categories-list.component.scss']
 })
 export class CategoriesListComponent {
+  private router = inject(Router);
+  private store = inject(Store);
+
   categories: CategoryDTO[];
   displayedColumns: string[] = [
     'category-id',
@@ -24,10 +27,7 @@ export class CategoriesListComponent {
   ];
 
   private userId: string;
-  constructor(
-    private router: Router,
-    private store: Store
-  ) {
+  constructor() {
     this.userId = '';
     this.categories = new Array<CategoryDTO>();
 

@@ -6,7 +6,7 @@ import {
   trigger
 } from '@angular/animations';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectCredentials } from '../../../Auth/selectors';
 import { SharedService } from '../../../Shared/Services/shared.service';
@@ -29,14 +29,14 @@ import { PostService } from '../../services/post.service';
   ]
 })
 export class HomeComponent implements OnInit {
+  private postService = inject(PostService);
+  private sharedService = inject(SharedService);
+  private store = inject(Store);
+
   posts: PostCardDTO[];
   showButtons: boolean;
 
-  constructor(
-    private postService: PostService,
-    private sharedService: SharedService,
-    private store: Store
-  ) {
+  constructor() {
     this.posts = new Array<PostCardDTO>();
     this.showButtons = false;
 

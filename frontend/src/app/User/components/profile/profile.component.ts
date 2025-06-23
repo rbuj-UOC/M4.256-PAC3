@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -19,6 +19,9 @@ import { selectUser } from '../../selectors';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  private formBuilder = inject(FormBuilder);
+  private store = inject(Store);
+
   profileUser: UserDTO;
 
   name: FormControl;
@@ -34,10 +37,7 @@ export class ProfileComponent implements OnInit {
 
   private userId: string;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private store: Store
-  ) {
+  constructor() {
     this.userId = '';
     this.profileUser = new UserDTO('', '', '', '', new Date(), '', '');
 

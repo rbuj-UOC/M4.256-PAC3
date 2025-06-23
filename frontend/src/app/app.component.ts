@@ -1,5 +1,5 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -17,6 +17,10 @@ import { selectUserStateLoading } from './User/selectors';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  private observer = inject(BreakpointObserver);
+  private router = inject(Router);
+  private store = inject(Store);
+
   title = 'frontend';
   showAuthSection: boolean;
   showNoAuthSection: boolean;
@@ -29,11 +33,7 @@ export class AppComponent implements OnInit {
   showLoadingPosts$: any;
   showLoadingUser$: any;
 
-  constructor(
-    private observer: BreakpointObserver,
-    private router: Router,
-    private store: Store
-  ) {
+  constructor() {
     this.showAuthSection = false;
     this.showNoAuthSection = true;
     this.showLoadingAuth$ = this.store.select(selectAuthStateLoading);

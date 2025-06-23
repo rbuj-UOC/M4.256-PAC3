@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -20,6 +20,10 @@ import { selectCategory } from '../../selectors';
   styleUrls: ['./category-form.component.scss']
 })
 export class CategoryFormComponent implements OnInit {
+  private activatedRoute = inject(ActivatedRoute);
+  private formBuilder = inject(FormBuilder);
+  private store = inject(Store);
+
   category: CategoryDTO;
   title: FormControl;
   description: FormControl;
@@ -33,11 +37,7 @@ export class CategoryFormComponent implements OnInit {
 
   private userId: string;
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder,
-    private store: Store
-  ) {
+  constructor() {
     this.userId = '';
 
     this.isValidForm = null;

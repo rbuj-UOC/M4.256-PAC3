@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
@@ -9,6 +9,11 @@ import { CategoryService } from '../services/category.service';
 
 @Injectable()
 export class CategoriesEffects {
+  private actions$ = inject(Actions);
+  private categoryService = inject(CategoryService);
+  private sharedService = inject(SharedService);
+  private router = inject(Router);
+
   private responseOK: boolean;
   private errorResponse: any;
   getCategoriesByUserId$: any;
@@ -24,12 +29,7 @@ export class CategoriesEffects {
   updateCategorySuccess$: any;
   updateCategoryFailure$: any;
 
-  constructor(
-    private actions$: Actions,
-    private categoryService: CategoryService,
-    private sharedService: SharedService,
-    private router: Router
-  ) {
+  constructor() {
     this.responseOK = false;
 
     this.getCategoriesByUserId$ = createEffect(() => {

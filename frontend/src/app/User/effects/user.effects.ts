@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
@@ -9,6 +9,11 @@ import { UserService } from '../services/user.service';
 
 @Injectable()
 export class UserEffects {
+  private actions$ = inject(Actions);
+  private userService = inject(UserService);
+  private router = inject(Router);
+  private sharedService = inject(SharedService);
+
   private responseOK: boolean;
   private errorResponse: any;
   register$: any;
@@ -20,12 +25,7 @@ export class UserEffects {
   getUserById$: any;
   getUserByIdFailure$: any;
 
-  constructor(
-    private actions$: Actions,
-    private userService: UserService,
-    private router: Router,
-    private sharedService: SharedService
-  ) {
+  constructor() {
     this.responseOK = false;
 
     this.register$ = createEffect(() => {

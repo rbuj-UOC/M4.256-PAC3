@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { selectUserId } from '../../../Auth/selectors';
@@ -14,6 +14,9 @@ import { selectPosts } from '../../selectors';
   styleUrls: ['./posts-list.component.scss']
 })
 export class PostsListComponent {
+  private router = inject(Router);
+  private store = inject(Store);
+
   posts: PostDTO[];
   displayedColumns: string[] = [
     'post-id',
@@ -25,10 +28,7 @@ export class PostsListComponent {
   ];
   private userId: string;
 
-  constructor(
-    private router: Router,
-    private store: Store
-  ) {
+  constructor() {
     this.userId = '';
     this.posts = new Array<PostDTO>();
 

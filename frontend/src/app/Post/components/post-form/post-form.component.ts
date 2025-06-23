@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -24,6 +24,10 @@ import { selectPost } from '../../selectors';
   styleUrls: ['./post-form.component.scss']
 })
 export class PostFormComponent implements OnInit {
+  private activatedRoute = inject(ActivatedRoute);
+  private formBuilder = inject(FormBuilder);
+  private store = inject(Store);
+
   post: PostDTO;
   title: FormControl;
   description: FormControl;
@@ -42,11 +46,7 @@ export class PostFormComponent implements OnInit {
 
   private userId: string;
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder,
-    private store: Store
-  ) {
+  constructor() {
     this.userId = '';
 
     this.isValidForm = null;
